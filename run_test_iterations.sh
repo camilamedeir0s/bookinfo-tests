@@ -15,7 +15,7 @@ VUS_VALUES=(100 150 200)
 for VUS in "${VUS_VALUES[@]}"; do
   OUTPUT_FILE="${OUTPUT_BASE}_${VUS}.json"
   echo "Executando teste com VUS=${VUS} e OUTPUT=${OUTPUT_FILE}..."
-  k6 run --env VUS=$VUS --env OUTPUT="$OUTPUT_FILE" script_10iterations_env.js
+  k6 run --env VUS=$VUS --env OUTPUT="$OUTPUT_FILE" shared-iterations-test.js
 done
 
 echo "Todos os testes foram concluídos."
