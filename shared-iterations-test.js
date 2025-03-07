@@ -5,7 +5,7 @@ import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 // Obtendo valores de variáveis de ambiente ou usando padrões
 const VUS = parseInt(__ENV.VUS) || 500; // Número de usuários virtuais simultâneos
 const OUTPUT = __ENV.OUTPUT || 'raw-data.json'; // Nome do arquivo de saída
-const HOST = "localhost"
+const HOST = __ENV.HOST || "localhost";
 
 export const options = {
   scenarios: {
