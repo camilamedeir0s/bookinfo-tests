@@ -32,8 +32,11 @@ for config in "${CONFIGS[@]}"; do
     
     # Loop sobre cada quantidade de usuários virtuais
     for users in "${VIRTUAL_USERS[@]}"; do
+        TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+        OUTPUT_VALUE="${config}_${users}_${TIMESTAMP}"
+    
         echo "Rodando teste com $users usuários virtuais para $config"
-        k6 run --env VUS=$users --env OUTPUT="$config" --env HOST="$ENDPOINT" shared-iterations-test.js
+        k6 run --env VUS=$users --env OUTPUT="$OUTPUT_VALUE" --env HOST="$ENDPOINT" shared-iterations-test.js
         sleep 20
     done
 
