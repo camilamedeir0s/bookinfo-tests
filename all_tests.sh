@@ -4,6 +4,10 @@ CONFIGS=(a-colocated b-distributed c-pp-details_ratings-reviews d-pp-ratings_det
 VIRTUAL_USERS=(200 300 400 500)
 CONFIG_PATH=~/bookinfo-serviceweaver/100products
 
+AWS_ACCESS_KEY_ID="AKIAxxxxxxxxxxxxxxxx"
+AWS_SECRET_ACCESS_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+BUCKET_NAME="meu-bucket-k6"
+
 # Função para aguardar o endpoint estar disponível
 wait_for_service() {
     local endpoint=$1
@@ -36,7 +40,15 @@ for config in "${CONFIGS[@]}"; do
         OUTPUT_VALUE="${config}_${users}_${TIMESTAMP}"
     
         echo "Rodando teste com $users usuários virtuais para $config"
-        k6 run --env VUS=$users --env OUTPUT="$OUTPUT_VALUE" --env HOST="$ENDPOINT" shared-iterations-test.js
+        k6 run \
+            --env AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
+            --env AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+            --env BUCKET_NAME="$BUCKET_NAME" \
+            --env VUS=$users \
+            --env OUTPUT="$OUTPUT_VALUE" \
+            --env HOST="$ENDPOINT" \
+            shared-iterations-test.js
+
         sleep 20
     done
 
