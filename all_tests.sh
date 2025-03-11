@@ -2,7 +2,7 @@
 
 CONFIGS=(a-colocated b-distributed c-pp-details_ratings-reviews d-pp-ratings_details-reviews e-pp-reviews_details-ratings f-pp_ratings-details-reviews g-details_pp-ratings-reviews h-ratings_pp-details-reviews i-reviews_pp-details-ratings j-pp-details_ratings_reviews k-pp-ratings_details_reviews l-pp-reviews_details_ratings m-details-ratings_pp_reviews n-details-reviews_pp_ratings o-ratings-reviews_pp_details)
 VIRTUAL_USERS=(200 300 400 500)
-CONFIG_PATH="~/bookinfo-serviceweaver/100products"
+CONFIG_PATH=~/bookinfo-serviceweaver/100products
 
 # Função para aguardar o endpoint estar disponível
 wait_for_service() {
